@@ -9,7 +9,7 @@ Alongside <a href="https://github.com/encode/databases" class="external-link" ta
 
 
 !!! tip
-    We strongly suggest going through the non async tutorial first ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), since this tutorial only cover the async parts of SQLAlchemy.
+    We strongly suggest going through the non async tutorial first ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), since this tutorial only covers the async parts of SQLAlchemy.
 
 ## File structure
 
