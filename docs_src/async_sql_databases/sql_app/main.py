@@ -16,11 +16,11 @@ async def start_db():
 
 # Dependency
 async def get_db():
-    async with AsyncSession(engine) as session:
-        try:
-            yield session
-        finally:
-            session.close()
+    session = AsyncSession(engine)
+    try:
+        yield session
+    finally:
+        await session.close()
 
 
 @app.post("/users/")
