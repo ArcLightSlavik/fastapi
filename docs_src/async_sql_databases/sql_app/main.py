@@ -2,7 +2,7 @@ from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from . import crud, schemas
-from .database import engine, Base
+from .database import Base, engine
 
 app = FastAPI()
 
@@ -32,7 +32,9 @@ async def create_user(user: schemas.UserCreate, db: AsyncSession = Depends(get_d
 
 
 @app.get("/users/")
-async def read_users(skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)):
+async def read_users(
+    skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)
+):
     return await crud.get_users(db, skip=skip, limit=limit)
 
 
@@ -45,10 +47,14 @@ async def read_user(user_id: int, db: AsyncSession = Depends(get_db)):
 
 
 @app.post("/users/{user_id}/items/")
-async def create_item_for_user(user_id: int, item: schemas.ItemCreate, db: AsyncSession = Depends(get_db)):
+async def create_item_for_user(
+    user_id: int, item: schemas.ItemCreate, db: AsyncSession = Depends(get_db)
+):
     return await crud.create_user_item(db=db, item=item, user_id=user_id)
 
 
 @app.get("/items/")
-async def read_items(skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)):
+async def read_items(
+    skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)
+):
     return await crud.get_items(db, skip=skip, limit=limit)
