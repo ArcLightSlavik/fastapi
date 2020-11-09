@@ -2,14 +2,14 @@
 
 Alongside <a href="https://github.com/encode/databases" class="external-link" target="_blank">`encode/databases`</a> you can also use native SQLAlchemy asyncio support.
 
-**THIS SUPPORT IS CURRENTLY IN BETA STAGE, DO NOT USE IT IN PRODUCTION!**
+!!! warning
+    SQLAlchemy asyncio support is currently in beta and is not stable.
+    
+    This tutorial expects SQLAlchemy >= 1.4.
 
-Since SQLite is currently not supported we'll use **PostgreSQL**, which does require you to have a running image of PostgreSQL.
-
-This tutorial also specifically expects `SQLAlchemy >= 1.4`, since it is currently in beta you will need to specify the version since pypi automatically will not install it.
 
 !!! tip
-    We strongly suggest going through the non async tutorial first ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), since this tutorial will mostly cover the async parts of SQLAlchemy.
+    We strongly suggest going through the non async tutorial first ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), since this tutorial only cover the async parts of SQLAlchemy.
 
 ## File structure
 
@@ -33,12 +33,17 @@ Now let's see what each file/module does.
 ## Create the `SQLAlchemy` parts¶
 
 * Import `create_async_engine`.
-* Create a `PostgreSQL` url, notice how we add **asyncpg** to the string, this is the postgres async client.
-* Create an async engine with the Postgres url.
+* Create a url for database URL for SQLAlchemy.
+* Create an async engine with the database url.
 
-```Python hl_lines="1  4  6"
+```Python hl_lines="1  4  7"
 {!../../../docs_src/async_sql_databases/sql_app/database.py!}
 ```
+
+!!! tip
+    If your using postgresql you need to append `asyncpg` to the database string, as shown above.
+    
+    You will also need to `pip install asyncpg`
 
 ## Create models and schemas
 
@@ -66,6 +71,15 @@ This step in unchanged from the non-async way, so we'll just copy the code in, i
 ```Python
 {!../../../docs_src/async_sql_databases/sql_app/main.py!}
 ```
+
+## Check it
+
+You can copy this code as is, and see the docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+
+There you can see all your API documented and interact with it:
+
+<img src="/img/tutorial/sql-databases/image01.png">
+
 
 ## More info
 
