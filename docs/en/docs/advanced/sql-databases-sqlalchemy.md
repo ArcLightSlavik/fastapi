@@ -41,7 +41,7 @@ Now let's see what each file/module does.
 ```
 
 !!! tip
-    If your using postgresql you need to append `asyncpg` to the database string, as shown above.
+    If you're using postgresql you need to append `asyncpg` to the database string, as shown above.
     
     You will also need to `pip install asyncpg`
 
