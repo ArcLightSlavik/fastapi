@@ -1,19 +1,18 @@
-# Async SQLAlchemy Databases
+# Async Databases with SQLAlchemy
 
-Alongside <a href="https://github.com/encode/databases" class="external-link" target="_blank">`encode/databases`</a> you can also use native SQLAlchemy asyncio support.
+This tutorial will cover the usage of SQLAlchemy async parts as an ORM.
+
+!!! tip
+    We strongly suggest going through the non async tutorial first ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), since this tutorial will only cover the async parts of SQLAlchemy.
 
 !!! warning
     SQLAlchemy asyncio support is currently in beta and is not stable.
-    
+
     This tutorial expects SQLAlchemy >= 1.4.
-
-
-!!! tip
-    We strongly suggest going through the non async tutorial first ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), since this tutorial only cover the async parts of SQLAlchemy.
 
 ## File structure
 
-For these examples, let's say you have a directory named `my_super_project` that contains a sub-directory called `sql_app` with a structure like this:
+For this example, let's say you have a directory named `my_super_project` that contains a sub-directory called `sql_app` with a structure like this:
 
 ```
 .
@@ -32,16 +31,14 @@ Now let's see what each file/module does.
     
 ## Create the `SQLAlchemy` parts¶
 
-* Import `create_async_engine`.
-* Create a url for database URL for SQLAlchemy.
-* Create an async engine with the database url.
+To use the async parts you will need to import `create_async_engine` instead of the base engine.
 
 ```Python hl_lines="1  4  7"
 {!../../../docs_src/async_sql_databases/sql_app/database.py!}
 ```
 
 !!! tip
-    If your using postgresql you need to append `asyncpg` to the database string, as shown above.
+    If your using PostgreSQL you need to append `asyncpg` to the database string, as shown above.
     
     You will also need to `pip install asyncpg`
 
@@ -68,6 +65,10 @@ This step in unchanged from the non-async way, so we'll just copy the code in, i
 
 ## Main FastAPI app
 
+On startup we run the engine to create all the declarative_base models, you can also drop all of them on each start.
+
+Notice how we are creating an instance of `AsyncSession` instead of the usual `Session`, this is also what we pass as the db type.
+
 ```Python
 {!../../../docs_src/async_sql_databases/sql_app/main.py!}
 ```
@@ -83,4 +84,4 @@ There you can see all your API documented and interact with it:
 
 ## More info
 
-You can read more about <a href="https://docs.sqlalchemy.org/en/14/orm/extensions/asyncio.html" class="external-link" target="_blank">`encode/databases` at its Docs page</a>.
+You can read more about <a href="https://docs.sqlalchemy.org/en/14/orm/extensions/asyncio.html" class="external-link" target="_blank">`SQLAlchemy` at its Docs page</a>.
