@@ -1,6 +1,5 @@
 from fastapi.testclient import TestClient
-
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
 from ..database import Base
 from ..main import app, get_db
@@ -8,8 +7,7 @@ from ..main import app, get_db
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 
 engine = create_async_engine(
-    SQLALCHEMY_DATABASE_URL,
-    connect_args={"check_same_thread": False}
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )
 
 
