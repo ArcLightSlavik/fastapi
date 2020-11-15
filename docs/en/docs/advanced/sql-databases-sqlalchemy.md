@@ -10,10 +10,6 @@ This tutorial will cover the usage of SQLAlchemy async parts as an ORM.
 
     This tutorial expects SQLAlchemy >= 1.4.
 
-
-!!! tip
-    We strongly suggest going through the non async tutorial first ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), since this tutorial only covers the async parts of SQLAlchemy.
-
 ## File structure
 
 For this example, let's say you have a directory named `my_super_project` that contains a sub-directory called `sql_app` with a structure like this:
@@ -42,7 +38,7 @@ To use the async parts you will need to import `create_async_engine` instead of 
 ```
 
 !!! tip
-    If you're using postgresql you need to append `asyncpg` to the database string, as shown above.
+    If you're using PostgreSQL you need to append `asyncpg` to the database string, as shown above.
     
     You will also need to `pip install asyncpg`
 
