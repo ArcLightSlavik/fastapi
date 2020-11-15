@@ -6,17 +6,17 @@ from . import models, schemas
 
 async def get_user(db: AsyncSession, user_id: int):
     db_execute = await db.execute(select(models.User).where(models.User.id == user_id))
-    return db_execute.first()
+    return db_execute.scalars().first()
 
 
 async def get_user_by_email(db: AsyncSession, email: str):
     db_execute = await db.execute(select(models.User).where(models.User.email == email))
-    return db_execute.first()
+    return db_execute.scalars().first()
 
 
 async def get_users(db: AsyncSession, skip: int = 0, limit: int = 100):
     db_execute = await db.execute(select(models.User).offset(skip).limit(limit))
-    return db_execute.all()
+    return db_execute.scalars().all()
 
 
 async def create_user(db: AsyncSession, user: schemas.UserCreate):
@@ -30,7 +30,7 @@ async def create_user(db: AsyncSession, user: schemas.UserCreate):
 
 async def get_items(db: AsyncSession, skip: int = 0, limit: int = 100):
     db_execute = await db.execute(select(models.Item).offset(skip).limit(limit))
-    return db_execute.all()
+    return db_execute.scalars().all()
 
 
 async def create_user_item(db: AsyncSession, item: schemas.ItemCreate, user_id: int):
