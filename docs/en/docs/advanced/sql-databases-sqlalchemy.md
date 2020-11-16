@@ -29,7 +29,7 @@ The file `__init__.py` is just an empty file, but it tells Python that `sql_app`
 
 Now let's see what each file/module does.
     
-## Create the `SQLAlchemy` parts¶
+## Create the `SQLAlchemy` parts
 
 To use the async parts you will need to import `create_async_engine` instead of the base engine.
 
