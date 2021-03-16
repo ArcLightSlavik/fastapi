@@ -6,8 +6,6 @@ This tutorial will cover the usage of SQLAlchemy async parts as an ORM.
     We strongly suggest going through the non async tutorial first ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), since this tutorial will only cover the async parts of SQLAlchemy.
 
 !!! warning
-    SQLAlchemy asyncio support is currently in beta and is not stable.
-
     This tutorial expects SQLAlchemy >= 1.4.
 
 ## File structure
