@@ -48,6 +48,11 @@ async def read_user(user_id: int, db: AsyncSession = Depends(get_db)):
     return db_user
 
 
+@app.delete("/users/{user_id}", response_model=schemas.User)
+async def delete_user(user_id: int, db: AsyncSession = Depends(get_db)):
+    await crud.delete_user(db, user_id=user_id)
+
+
 @app.post("/users/{user_id}/items/", response_model=schemas.Item)
 async def create_item_for_user(
     user_id: int, item: schemas.ItemCreate, db: AsyncSession = Depends(get_db)
