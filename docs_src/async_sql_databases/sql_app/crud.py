@@ -28,6 +28,15 @@ async def create_user(db: AsyncSession, user: schemas.UserCreate):
     return db_user
 
 
+async def delete_user(db: AsyncSession, user_id: int):
+    db_execute = await db.execute(select(models.User).where(models.User.id == user_id))
+    db_user = db_execute.scalars().first()
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    await db.delete(db_user)
+    await db.commit()
+
+
 async def get_items(db: AsyncSession, skip: int = 0, limit: int = 100):
     db_execute = await db.execute(select(models.Item).offset(skip).limit(limit))
     return db_execute.scalars().all()
