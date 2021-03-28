@@ -4,8 +4,9 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from ..database import Base
 from ..main import app, get_db
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
+SQLALCHEMY_DATABASE_URL = "sqlite+aiosqlite:///./test.db"
 
+# connect_args is ONLY for sqlite, remove if using PostgreSQL or other.
 engine = create_async_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )
