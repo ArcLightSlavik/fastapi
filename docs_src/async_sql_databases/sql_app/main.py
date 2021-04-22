@@ -18,7 +18,7 @@ async def start_db():
 
 # Dependency
 async def get_db():
-    session = AsyncSession(engine)
+    session = AsyncSession(engine, expire_on_commit=True)
     try:
         yield session
     finally:
